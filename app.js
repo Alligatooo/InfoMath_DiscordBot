@@ -3,6 +3,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+//Channel ID needs to be changed to the channel ID he only should listen to
 const channelID = 518532018573803550;
 
 client.on('ready', () => {
@@ -51,4 +52,5 @@ function sendUserMessage(userId, message) {
     s.send(message);
 }
 
-client.login('NTAxMDU3Mzg5MTY5MjEzNDQx.DqT2XA.Mrzn7ZCitFzSlfPewfPTcsZooHA');
+//INSERT BOT Auth. Token
+client.login('');
