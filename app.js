@@ -3,6 +3,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const config = require("./config.json");
+
 //Channel ID needs to be changed to the channel ID he only should listen to
 const channelID = 518532018573803550;
 
@@ -18,12 +20,12 @@ client.on('guildMemberAdd', member => {
 
 //Responding
 client.on('message', message => {
-    if (message.content === "" || message.content == undefined || message.channel.id != channelID || message.author.id == client.user.id) return;  
+    if (message.content === "" || message.content == undefined || message.channel.id != channelID || message.author.id == client.user.id) return;
     var splitted = message.content.split(" ");
 
     //Commands
-    switch (splitted[0].toUpperCase()) {           
-       
+    switch (splitted[0].toUpperCase()) {
+
         case '!HELP':       //Sends the user all commands
             message.sendMessage(message.author, "!Email [EmailAddress] - Set your Email (Only for authentification purposes)");
             break;
@@ -52,5 +54,4 @@ function sendUserMessage(userId, message) {
     s.send(message);
 }
 
-//INSERT BOT Auth. Token
-client.login('');
+client.login(config.token);
