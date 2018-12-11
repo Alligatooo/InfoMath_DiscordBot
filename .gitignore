@@ -1,0 +1,5 @@
+#personal json config files files
+*.json
+
+#personal node modules
+node_modules/**
