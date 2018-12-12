@@ -54,8 +54,7 @@ client.on('message', async message => {
             message.channel.send("something");
         // message.guild.map(new function();
         default:            //Cannot identify any command
-            if (message.content.startsWith("!"))
-                message.channel.send("Wrong command! \r\nCheck \"!help\" for more information");
+                message.channel.send("Wrong command! \r\nCheck \"mi!help\" for more information");
     }
 
 });
