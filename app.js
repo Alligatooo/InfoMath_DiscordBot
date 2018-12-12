@@ -20,6 +20,11 @@ client.on('guildMemberAdd', member => {
 
 //Responding
 client.on('message', message => {
+
+    if(message.author.bot) return;
+
+    if(message.content.indexOf(config.prefix) !== 0) return;
+
     if (message.content === "" || message.content == undefined || message.channel.id != channelID || message.author.id == client.user.id) return;
     var splitted = message.content.split(" ");
 
