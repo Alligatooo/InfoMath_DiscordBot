@@ -19,7 +19,7 @@ client.on('guildMemberAdd', member => {
 });
 
 //Responding
-client.on('message', message => {
+client.on('message', async message => {
 
     if(message.author.bot) return;
 
@@ -27,20 +27,35 @@ client.on('message', message => {
 
     if (message.content === "" || message.content == undefined || message.channel.id != channelID || message.author.id == client.user.id) return;
     var splitted = message.content.split(" ");
+    splitted[0] = splitted[0].substr(config.prefix.length);
 
     //Commands
     switch (splitted[0].toUpperCase()) {
 
-        case '!HELP':       //Sends the user all commands
-            message.sendMessage(message.author, "!Email [EmailAddress] - Set your Email (Only for authentification purposes)");
+        case 'HELP':       //Sends the user all commands
+            message.channel.send(`${message.author} "Needs to be done"`);
             break;
 
-        case '!LIST': //Sends all channels
-           // message.guild.map(new function();
+        case 'ADD': //Adds a new role to a user
+            if (splitted[1] === "" || splitted[1] === undefined) return;
+            let role = message.channel.guild.roles.find(val => val.name === splitted[1]); //Searches for the role
 
+            if (role === null) { //Couldn't find a role
+                message.channel.send("Couldn't find a role with the name "+ splitted[1]);
+                return;
+            }
+
+            //Found a role with the given name and adds it to the member
+            message.member.addRole(role.id);
+            message.channel.send("You now have access to the channel "+ role.name);
+            return;
+
+        case 'LIST': //Sends all channels
+            message.channel.send("something");
+        // message.guild.map(new function();
         default:            //Cannot identify any command
             if (message.content.startsWith("!"))
-                message.reply("Wrong command! \r\nCheck \"!help\" for more information");
+                message.channel.send("Wrong command! \r\nCheck \"!help\" for more information");
     }
 
 });
