@@ -21,16 +21,17 @@ client.on('guildMemberAdd', member => {
 //Responding
 client.on('message', async message => {
 
-    if(message.author.bot) return;
-
-    if(message.content.indexOf(config.prefix) !== 0) return;
+    if(message.author.bot || !message.content.startsWith(config.prefix)) return;
 
     if (message.content === "" || message.content == undefined || message.channel.id != channelID || message.author.id == client.user.id) return;
-    var splitted = message.content.split(" ");
-    splitted[0] = splitted[0].substr(config.prefix.length);
+
+    //puts the content of message in args, cutting prefix out
+    const args = message.content.slice(config.prefix.length).split(' ');
+    //puts the first argument of arg into command
+    const command = args.shift().toUpperCase();
 
     //Commands
-    switch (splitted[0].toUpperCase()) {
+    switch (command) {
 
         case 'HELP':       //Sends the user all commands
             message.channel.send(`${message.author} "Needs to be done"`);
