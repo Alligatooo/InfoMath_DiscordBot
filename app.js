@@ -14,7 +14,7 @@ client.on('ready', () => {
 
 //New User joins on the Server
 client.on('guildMemberAdd', member => {
-    member.sendMessage("Willkommen auf unserem Informatik Discord Server!");
+    member.sendMessage("Willkommen auf unserem Mathematik/Informatik Discord Server!");
 
 });
 
